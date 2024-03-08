@@ -1,0 +1,150 @@
+{%extends "layout.html" %}
+
+{% block leftbody %}
+
+
+
+<h2 class="header">Top Players for Gameweek {{gameweek}}</h2>
+<br></br>
+  <h3 class="gk_header">Goalkeepers</h3>
+  <table id="table2">
+    <thead>
+      <tr>
+        <th>TEAM</th>
+        <th>NAME</th>
+        <th>COST</th>
+        <th>PREDICTED POINTS</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in range(3) %}
+      <tr>
+        {% for j in range(4) %}
+          <td>{{top_players[i][j]}}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <br></br>
+  <h3> Defenders </h3>
+  <table id="table3">
+    <tr>
+      <th>TEAM</th>
+      <th>NAME</th>
+      <th>COST</th>
+      <th>PREDICTED POINTS</th>
+    </tr>
+  {% for i in range(3,8) %}
+    <tr>
+    {% for j in range(4) %}
+      <td>{{top_players[i][j]}}</td>
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </table>
+  <br></br>
+  <h3> Midfielders </h3>
+  <table id="table4">
+    <tr>
+      <th>TEAM</th>
+      <th>NAME</th>
+      <th>COST</th>
+      <th>PREDICTED POINTS</th>
+    </tr>
+  {% for i in range(8,13) %}
+    <tr>
+    {% for j in range(4) %}
+      <td>{{top_players[i][j]}}</td>
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </table>
+  <br></br>
+  <h3> Forwards </h3>
+  <table id="table5">
+    <tr>
+      <th>TEAM</th>
+      <th>NAME</th>
+      <th>COST</th>
+      <th>PREDICTED POINTS</th>
+    </tr>
+  {% for i in range(13,16) %}
+    <tr>
+    {% for j in range(4) %}
+      <td>{{top_players[i][j]}}</td>
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </table>
+  <br>
+  <br>
+  <br>
+
+
+{% endblock %}
+{% block rightbody %}
+<h2 class="header">Player of the week <img id="trophy" src="static/img/newtrophy.png"></h2>
+<div id="bestPlayer"></div>
+<script type="text/javascript" language="javascript" src="static/javascript/playerInfo.js"></script>
+<script type="text/javascript">
+  //map for team names from database to full team names
+  let team_map = {"Arsenal": "Arsenal",
+            "Aston Villa": "Aston Villa",
+            "Brentford": "Brentford",
+            "Brighton": "Brighton",
+            "Burnley": "Burnley",
+            "Chelsea": "Chelsea",
+            "Crystal Palace": "Crystal Palace",
+            "Everton": "Everton",
+            "Leeds": "Leeds",
+            "Leicester": "Leicester",
+            "Liverpool": "Liverpool",
+            "Man City": "Manchester City",
+            "Man Utd": "Manchester United",
+            "Newcastle": "Newcastle",
+            "Norwich": "Norwich",
+            "Southampton": "Southampton",
+            "Spurs": "Tottenham",
+            "Watford": "Watford",
+            "West Ham": "West Ham",
+            "Wolves": "Wolverhampton"
+            };
+
+  //create ui element for a player which displays the player's information for that gameweek
+  function createPlayerButton(player) {
+        role = player.element_type;
+        name = player.Name;
+        value = player.now_cost;
+        team = player.team;
+        var img = new Image();
+        img.src = "static/img/" + team_map[team].replace(/ /g, "").toLowerCase() + ".webp";
+        var span = document.createElement("span");
+        span.className = "shirtSpan";
+        var playerButton = document.createElement("div");
+        playerButton.id = name;
+        playerButton.className = "team_selection_button";
+        playerButton.addEventListener("click", displayInfoEv);
+        playerButton.param = name;
+        span.appendChild(img);
+        playerButton.appendChild(span);
+        return playerButton;
+
+    }
+  //get player with the highest predicted points for this week and add to 'player of the week' section
+  fetch('/best-player', {
+      method: 'POST',
+      credentials: 'include',
+      cache: "no-cache",
+      headers: new Headers({
+          "content-type": "application/json"
+      })
+  }).then(function (response) {
+      response.json().then(function (data) {
+      player = data.best_player;
+      document.getElementById("bestPlayer").innerHTML += "<b>" + player.name + "</b> • <b>" + player.points + " predicted points</b>"
+      })})
+      
+      
+</script>
+{% endblock %}

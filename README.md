@@ -10,6 +10,4 @@ This platform was built using a Flask backend and a simple HTML / CSS frontend w
 
 The data sources for this platform include the [Fantasy Premier League API](https://fpl.readthedocs.io/en/latest/#) and a publicly available FPL Github under the name [vastaav](https://github.com/vaastav/Fantasy-Premier-League).
 
-## Deployment
 
-The platform has been deployed at [FootML-FPL](http://footml-fpl.herokuapp.com/). 

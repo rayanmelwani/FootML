@@ -1,0 +1,46 @@
+
+body{
+    background-color: whitesmoke;
+}
+
+
+.main{
+    padding-top: 8%;
+    font-family: Noto Sans, sans-serif;
+    text-align: center;
+
+}
+
+
+.button {
+    background-color: #547743; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+
+  #footer{
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    bottom: 0;
+    color: white;
+    background-color: #547743;
+    display: inline-flex;
+    list-style-type: none;
+    padding: 0%;
+}
+
+#footer li{
+    font-family: Noto Sans, sans-serif;
+    margin: auto;
+}
+
+#footer li:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,27 @@
+{%extends "layout.html" %}
+
+{% block leftbody %}
+<h1> </h1>
+<h1 class="how-it-works">How it works</h1>
+<h4 class="navigate">Navigate through three different tabs:</h4>
+<ol class="list">
+    <li>A Team Selection tab where you can enter your team and will be recommended transfers</li>
+    <li>A Transfer Analyser tab where you can analyse proposed transfers</li>
+    <li>A Top Performers tab where you can visualise the top performers for future Gameweeks</li>
+</ol>
+<p><em>How it actually works</em>
+  </br>The proposed transfers are based on the outputs of a machine learning model
+</br> using a recurrent neural network. This model is created for every player using previous game
+</br>week stats (up to 230) to predict the next game week points. We are currently predicting for GW
+</br> {{gameweek}}. In addition to this, the model incorporates simple Bayesian statistics to determine 
+</br>likelihood of these predictions and adjusts them accordingly.</p>
+<p>*predictions are affected by the current cost of your team thus recommendations
+from the team selection page may not be possible</p>
+
+{% endblock %}
+{% block rightbody %}
+<div class="field">
+    <div class="football">
+    </div>
+  <div>
+{% endblock %}

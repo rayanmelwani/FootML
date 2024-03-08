@@ -1,0 +1,53 @@
+{%extends "layout.html" %}
+
+{% block leftbody %}
+<h2 class="header">Search Results</h2>
+<div id="playerSearchList"></div>
+<div id="teamSearchListBackground"></div>
+{% endblock %}
+
+{% block rightbody %}
+<h2 class="header">Filters</h2>
+<div>
+    <div class="search-box-wrapper">
+        <input autocomplete="off" type="text" id="inputName" class="search-box-input" onkeyup="advancedSearch()" placeholder="Player name">
+        <button class="search-box-button">&#128269;</button>
+    </div>
+    <br>
+    <br>
+    
+    <div>
+        Max Cost:
+        <input autocomplete="off" type="text" id="costFilter" onkeyup="advancedSearch()" style="width: 40px; text-align: center" default="100"> 
+    </div>
+    <br>
+
+    <div>
+        Show Only Position:
+        <select name="roleFilter" id="roleFilter" onchange="advancedSearch()">
+            <option value="None">-</option>
+            <option value="GK">GK</option>
+            <option value="DEF">DEF</option>
+            <option value="MID">MID</option>
+            <option value="FWD">FWD</option>
+        </select>
+    </div>
+    <br>
+
+    <div>
+        <div id="teamSearchListContainer">
+            <div id="displayTeamList" style="border: rgb(1, 119, 1); color: black">Exclude teams:</div>
+            <div id="teamSearchList" class="overflow-auto-small">
+        </div>
+        
+    </div>
+    <br>
+
+    <div id="excludedTeams">
+        Excluded:
+        <div id="excludedTeamList"></div>
+    </div>
+</div>
+<script type="text/javascript" language="javascript" src="static/javascript/teamSearch.js"></script>
+<script type="text/javascript" language="javascript" src="static/javascript/playerInfo.js"></script>
+{% endblock %}

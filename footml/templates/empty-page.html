@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="static/css/style2.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>footML</title>
+</head>
+
+<body>
+
+
+  <div class="wrapper">
+    <div id="row1">
+      <div id="col1">
+        <div id="header">
+          <img id="ball-logo" src="static/img/2.png" alt="Logo"/>
+          </br>
+          <h1>FootML</h1>
+          <div>
+            <li><form action="/home" method="post">
+              <button class="button" type = "enter">Home</button>
+            </form></li>
+        </br>
+          <li><form action="/tab1" method="post">
+            <button class="button" type = "enter">Tab 1</button>
+          </form></li>
+        </br>
+          <li><form action="/tab2" method="post">
+            <button class="button" type = "enter">Tab 2</button>
+          </form></li>
+        </br>
+          <li><form action="/tab3" method="post">
+            <button class="button" type = "enter">Tab 3</button>
+          </form></li>
+        </div>
+        </div>
+      </div>
+      <div id="col2">{%block body%}{%endblock %}</div>
+    </div>
+    <div id="row2">
+      <div id="footer">
+        <li><form action="/about-us" method="post">
+          <button class="button" type = "enter">About Us</button>
+        </form></li>
+        <li><form action="/privacy-policy" method="post">
+          <button class="button" type = "enter">Privacy Policy</button>
+        </form></li>
+      <li>A Group 22 Production 2022</li>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

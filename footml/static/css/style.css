@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'andale_mono';
+  font-style: normal;
+  font-weight: normal;
+  src: local('andale_mono'), url('ANDALEMO.woff') format('woff');
+  }
+
+p{
+    line-height:1.5;
+  }
+
+  h1, h3, h4{
+    color: black;
+    line-height:2.1em;
+    text-align: center;
+    font-family: andale_mono, monospace;
+  }
+  h2, p{
+    font-family: andale_mono, monospace;
+  }
+
+  a{
+    font-size:200%;
+    font-family: andale_mono, monospace;
+  }
+  #pic{
+    width: 120px;
+    height: auto;
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+  #nav{
+    width:100%;
+    display: inline;
+    text-align: centre;
+    font-family: andale_mono, monospace;
+  }
+
+  #nav ul{
+    list-style-type: none;
+    display:flex;
+    justify-content:space-around;
+    font-family: andale_mono, monospace;
+  }
+
+  #nav ul li a{
+    font-family: andale_mono, monospace;
+    color:black;
+  }
+
+  #nav ul li a:hover{
+    color:green;
+  }
+
+  form{
+    font-family: andale_mono, monospace;
+  }
+  #form:hover{
+    color:green;
+  }
+
+  button:hover{
+    color:green;
+  }

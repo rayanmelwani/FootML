@@ -1,0 +1,168 @@
+h1{
+    font-family: Noto Sans, sans-serif;
+    font-size: 100;
+    font-weight: 400;
+    margin-left: 20%;
+    padding-top: 0%;
+}
+
+.form{
+    font-family: Noto Sans, sans-serif;
+}
+
+#header li{
+    font-family: Noto Sans, sans-serif;
+    margin-left: 20%;
+    list-style-type: none;
+}
+
+#header li:hover {
+    text-decoration: underline;
+    color: #547743;
+}
+
+#main{
+    width: 1000px;
+}
+
+#ball-logo{
+    height: 150px;
+    width: 150px;
+    margin-left: 15%;
+}
+
+.bg-image{
+    background-image: url(/static/img/5-1.png);
+    background-repeat: no-repeat;
+
+    background-size: contain;
+    width: 1400px;
+}
+
+#footer{
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    bottom: 0;
+    color: white;
+    background-color: #547743;
+    display: inline-flex;
+    list-style-type: none;
+    padding: 0%;
+    font-size: medium;
+}
+
+#footer li{
+    font-family: Noto Sans, sans-serif;
+    margin: auto;
+}
+
+#footer a{
+    color: white;
+}
+
+.container{
+   display: flex;
+}
+
+.item{
+    outline: tomato;
+}
+
+.field{
+    bottom: 0%;
+    height: auto;
+    max-width: 1000px;
+    z-index: -1;
+}
+
+.flex-container{
+    display: flex;
+    border: 2px solid yellow;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.flex-child{
+    border: 2px solid red;
+}
+
+/* .flex-child {
+    flex: .3;
+    border: 2px solid yellow;
+    align-items: stretch;
+}
+
+.flex-child:first-child {
+    margin-right: 20px;
+}   */
+
+.wrapper, html, body {
+    font-family: Noto Sans, sans-serif;
+    height: 100%;
+    margin: 0;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+#row1 {
+    flex:2;
+    display: flex;
+}
+
+#col1 {
+    background-color: whitesmoke;
+    flex: 0 0 240px;
+    min-height: 100%;
+
+}
+#col2,#col3, #col4  {
+    /* background-image: url(/static/img/5-1.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+
+    background-size: contain;
+    width: 1000px; */
+    background-color: whitesmoke;
+    flex: 1 1;
+    min-height: 100%;
+    border-right:2px solid #547743 ;
+}
+
+#col2 li{
+  list-style-type: none;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+/* a:visited{
+    color: #547743;
+} */
+
+a:hover{
+    color:#547743;
+}
+
+#footer .button{
+    color: white;
+    font-family: Noto Sans, sans-serif;
+    background: none;
+    border: none;
+    font-size: medium;
+}
+
+.button:hover{
+    text-decoration: underline;
+}
+
+#header .button{
+    color: black;
+    font-family: Noto Sans, sans-serif;
+    background: none;
+    border: none;
+    font-size: medium;
+}

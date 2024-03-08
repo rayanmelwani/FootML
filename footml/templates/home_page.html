@@ -1,0 +1,56 @@
+{%extends "layout.html" %}
+
+{% block leftbody %}
+<div class = "home">
+<h2>Team Selection</h2>
+<br></br>
+
+
+          <div id="team_selection" class="pitch">
+            <h4 class="roleHeader">GK</h4>
+            <ol><p id = "GK"></p></ol>
+            <br>
+            <h4 class="roleHeader">DEF</h4>
+            <ol><p id = "DEF"></p></ol>
+            <br>
+            <h4 class="roleHeader">MID</h4>
+            <ol><p id = "MID"></p></ol>
+            <br>
+            <h4 class="roleHeader">FWD</h4>
+            <ol><p id = "FWD"></p><br><br><br></ol>
+
+            <body>
+
+            </body>
+        </div>
+      </div>
+{% endblock %}
+
+{% block rightbody %}
+<h2 class="header">Add Players</h2>
+<label id="counter">Players Selected &#10142; 0/15</label>
+        <div id="budget">Current Team Value &#10142; 0</div>
+        <div id="fundsDiv">
+          Remaining funds &#10142;
+          <input id=funds type="text" value="0.0">
+        </div>
+        <form action="/recommendation" onsubmit="submitTeam();" id="submitteam" method="post">
+          <button class="submitTeamButton" role="button">Submit Team</button>
+          <br></br>
+        </form>
+        <div class="search-box-wrapper">
+          <input autocomplete="off" type="text" id="input_name" class="search-box-input" onkeyup="filterSearch()" placeholder="Search for players..">
+          <button class="search-box-button">&#128269;</button>
+        </div>
+        <br></br>
+        <div id="player_list">
+          <div id='player_display' class="overflow-auto">
+          {% for name in data %}
+            <button id="{{name[1]}}" onclick="submitPlayer('{{name[0]}}');" type="button">{{ name[0] }}</button>
+          {% endfor %}
+        </div>
+        </div>
+<script type="text/javascript" language="javascript" src="static/javascript/filterSearch.js"></script>
+<script type="text/javascript" language="javascript" src="static/javascript/playerInfo.js"></script>
+<script type="text/javascript" language="javascript" src="static/javascript/submitPlayer.js"></script>
+{% endblock %}

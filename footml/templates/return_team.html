@@ -1,0 +1,152 @@
+{%extends "layout.html" %}
+
+{% block leftbody %}
+    <body>
+        <h2 class="header">Transfer Recommendation</h2>
+        <div id="transfer_list">
+            We recommend swapping: <br><br>
+        </div>
+        
+
+        <!-- {% for transfer in transfers %}
+          <li>Transfer out {{ transfer[0] }} for {{ transfer[1] }}</li>
+        {% endfor %} -->
+        
+    </body>
+</html>
+
+{% endblock %}
+{% block rightbody %}
+<h2 class="header">Current Team</h2>
+<div id="teamSoFar">
+    <h4>GK</h4>
+    <ol><p id = "GK"></p></ol>
+    <br>
+    <h4>DEF</h4>
+    <ol><p id = "DEF"></p></ol>
+    <br>
+    <h4>MID</h4>
+    <ol><p id = "MID"></p></ol>
+    <br>
+    <h4>FWD</h4>
+    <ol><p id = "FWD"></p><br><br><br></ol>
+    <p id="fundsDisplay"></p>
+</div>
+<script type="text/javascript" language="javascript" src="static/javascript/playerInfo.js"></script>
+<script>
+    let team_map = {"Arsenal": "Arsenal",
+            "Aston Villa": "Aston Villa",
+            "Brentford": "Brentford",
+            "Brighton": "Brighton",
+            "Burnley": "Burnley",
+            "Chelsea": "Chelsea",
+            "Crystal Palace": "Crystal Palace",
+            "Everton": "Everton",
+            "Leeds": "Leeds",
+            "Leicester": "Leicester",
+            "Liverpool": "Liverpool",
+            "Man City": "Manchester City",
+            "Man Utd": "Manchester United",
+            "Newcastle": "Newcastle",
+            "Norwich": "Norwich",
+            "Southampton": "Southampton",
+            "Spurs": "Tottenham",
+            "Watford": "Watford",
+            "West Ham": "West Ham",
+            "Wolves": "Wolverhampton"
+            };
+
+    //create ui element corresponding to player
+    function createPlayerButton(player) {
+        role = player.element_type;
+        name = player.Name;
+        value = player.now_cost;
+        team = player.Team;
+        var img = new Image();
+        img.src = "static/img/" + team_map[team].replace(/ /g, "").toLowerCase() + ".webp";
+        var span = document.createElement("span");
+        span.className = "shirtSpan";
+        var playerButton = document.createElement("div");
+        playerButton.id = name;
+        playerButton.className = "team_selection_button";
+        playerButton.addEventListener("click", displayInfoEv);
+        playerButton.param = name;
+        span.appendChild(img);
+        playerButton.appendChild(span);
+        return playerButton;
+
+    }
+    //function to print players
+    function printPlayer (player) {
+        let playerButton = createPlayerButton(player);
+        playerButton.innerHTML += name;
+        document.getElementById(role).appendChild(playerButton);
+    }
+
+    //get current player list from session storage
+    let players = localStorage.getItem("current_players")
+    players = JSON.parse(players)
+    for (let i = 0; i < players.length; i++) {
+        printPlayer(players[i])
+    }
+    console.log(players)
+
+    //get current funds from session storage
+    let funds = localStorage.getItem("extra_funds");
+    funds = parseFloat(funds);
+
+
+    //sends the list of players currently in team and the remaining
+    //funds specified by the user (defaulted to 0)
+    var send_data = {"players":players, "funds":funds}
+
+    //ask the server to find the transfer which results
+    //in the largest gain of predicted points according to our model
+    fetch('/predict_transfers', {
+                method: 'POST',
+                credentials: 'include',
+                body: JSON.stringify(send_data),
+                cache: "no-cache",
+                headers: new Headers({
+                    "content-type": "application/json"
+                })
+            })
+            .then(function (response) {
+              response.json().then(function (data) {
+                  if (Object.keys(data).length === 0) {
+                    document.getElementById("transfer_list").innerHTML = "Your team is optimal according to our model!"
+                  }
+                  let transfer_out = data.transferout;
+                  let transfer_in = data.transferin;
+                  if (transfer_in === "Null") {
+                    document.getElementById("transfer_list").innerHTML = "Your team is optimal according to our model!";
+                  }
+                  else {
+                      //create ui elements correspondign to the transferred in and out players
+                    let transferImage = new Image();
+                    transferImage.src = "static/img/transparentarrows.png";
+                    transferImage.id = "arrows";
+                    let outButton = createPlayerButton(transfer_out);
+                    outButton.innerHTML += transfer_out.Name + " • £" + transfer_out.now_cost;
+                    outButton.id = "out";
+                    let inButton = createPlayerButton(transfer_in);
+                    inButton.innerHTML += transfer_in.Name + " • £" + transfer_in.now_cost;
+                    inButton.id = "in";
+                    
+                    document.getElementById("transfer_list").appendChild(outButton);
+                    document.getElementById("transfer_list").innerHTML += "<br><br>";
+                    document.getElementById("transfer_list").appendChild(transferImage);
+                    document.getElementById("transfer_list").innerHTML += "<br><br>";
+                    document.getElementById("transfer_list").appendChild(inButton);
+                    document.getElementById("transfer_list").innerHTML += "<br><br>";
+                    document.getElementById("transfer_list").innerHTML += "<ul> For an expected gain of <b>" + (transfer_in.pred_points - transfer_out.pred_points).toFixed(1).toString() + " points</b>, according to our model.";
+
+                  }
+                  
+              })
+            })
+
+
+
+</script>
+{% endblock %}
