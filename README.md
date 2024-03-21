@@ -5,7 +5,7 @@ Built a machine learning platform for the 2020-2021 Fantasy Premier League Seaso
 
 ## Development
 
-This platform was built using a Flask backend and a simple HTML / CSS frontend with injections of JavaScript. We used a recurrent neural net (RNN) to predict player points for following gameweeks during the 2020-2021 PL season. 
+This platform was built using a Flask backend and a simple HTML / CSS frontend with injections of JavaScript. We used a recurrent neural net (RNN) to predict player points for following gameweeks during the 2021-2022 PL season. 
 
 ## Data Sources
 
