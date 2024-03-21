@@ -1,6 +1,6 @@
 # FootML
 
-Built a machine learning platform for the 2020-2021 Fantasy Premier League Season. Worked with Charlie Robertson, Katie Miles, Fraser Ralston & James Rosen. 
+Built a machine learning platform for the 2021-2022 Fantasy Premier League Season. Worked with Charlie Robertson, Katie Miles, Fraser Ralston & James Rosen. 
 
 
 ## Development
